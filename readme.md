@@ -8,8 +8,6 @@ $${\color{#FFA500}E9 \space \color{#4682B4}A1 }$$
 
 ### 1. Základní pojmy a architektury řídicích jednotek
 
-*Časová dotace: 10–15 minut | Úvodní úloha*
-
 Doplňte do níže uvedené tabulky význam zkratek, základní princip a typický příklad reálného nasazení nebo zástupce:
 
 | Zkratka / Pojem          | Co zkratka znamená (česky/anglicky) | Základní charakteristika (architektura, kde běží program)                                 | Typický zástupce                  | Příklad nasazení                           |
@@ -125,18 +123,26 @@ Jste v pozici nezávislého konzultanta automatizace. Tři různí zákazníci p
 #### Váš úkol:
 Vyplňte rozhodovací matici. Jako vzor poslouží vyplněný sloupec pro **Vzorovou aplikaci 0**. Přiřaďte každé aplikaci nejvhodnější platformu (**MCU / Embedded SoC**, **Kompaktní/modulární PLC**, **Průmyslové PC – iPC**) a doplňte multikriteriální posouzení:
 
-| Kritérium hodnocení                                                                                   | **Vzorová aplikace 0 (Vjezdová závora - VZOR)**                                                                                                                                                                           | Aplikace A (Pokojový termostat) | Aplikace B (Balicí linka) | Aplikace C (Kamerová kontrola svarů) |
-| :---------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ | :------------------------ | :----------------------------------- |
-| **Doporučená platforma** *(MCU / PLC / iPC)*                                                          | **Programovatelné relé / kompaktní PLC** *(např. Siemens LOGO!, Eaton easyE4)*                                                                                                                                            | `...`                           | `...`                     | `...`                                |
-| **Pořizovací cena HW na 1 kus** *(nízká < 500 Kč / střední 5–30 tis. Kč / vysoká > 50 tis. Kč)*       | **Střední** *(cca 3 500 – 6 000 Kč)*                                                                                                                                                                                      | `...`                           | `...`                     | `...`                                |
-| **Primární programovací jazyk** *(C/C++/MicroPython vs. IEC 61131-3 ST/LAD vs. Python/C#/C++ pod OS)* | **FBD / LAD** *(grafické funkční bloky nebo liniové schéma dle IEC 61131-3)*                                                                                                                                              | `...`                           | `...`                     | `...`                                |
-| **Klíčový technický argument pro volbu** *(např. spotřeba, determinismus, grafický výkon)*            | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | `...`                           | `...`                     | `...`                                |
-| **Hlavní riziko při volbě špatné platformy** *(proč by neuspěly ostatní dvě varianty)*                | **MCU:** Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>**iPC:** Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba.             | `...`                           | `...`                     | `...`                                |
+# Rozhodovací matice platforem (MCU vs. PLC vs. iPC)
 
-> **Kritéria hodnocení úlohy 3 (bodování a známka):**
-> - :bangbang: **Správnost technického přiřazení platforem (30 %):** Stoprocentně logické a obhajitelné přiřazení všech 3 technologií.
-> - :bangbang: **Inženýrská a ekonomická argumentace (40 %):** Zohlednění ekonomiky sériovosti (kusová vs. masová výroba), spotřeby energie, náročnosti vývoje a schopností servisního personálu.
-> - :bangbang: **Analýza rizik nevhodné platformy (30 %):** Věcné zdůvodnění, proč je v daném případě jiná platforma neefektivní, příliš drahá nebo neschopná úlohu odbavit.
+| Kritérium hodnocení | Vzorová aplikace 0 (Vjezdová závora - VZOR) | Aplikace A (Pokojový termostat) | Aplikace B (Balicí linka) | Aplikace C (Kamerová kontrola svarů) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Doporučená platforma (MCU / PLC / iPC)** | Programovatelné relé / kompaktní PLC (např. Siemens LOGO!, Eaton easyE4). | **Mikrokontrolér / Embedded SoC** (např. ESP32, nRF52, STM32) | **Kompaktní / modulární PLC** (např. Siemens S7-1200, Schneider Electric Modicon) | **Průmyslové PC (iPC)** s podporou GPU (např. Advantech, průmyslové IPC s NVIDIA grafikou) |
+| **Pořizovací cena HW na 1 kus** | Střední (cca 3 500 – 6 000 Kč) | **Nízká** (< 500 Kč) | **Střední** (5–30 tis. Kč) | **Vysoká** (> 50 tis. Kč) |
+| **Primární programovací jazyk** | FBD / LAD (grafické funkční bloky nebo liniové schéma dle IEC 61131-3) | **C / C++ / MicroPython** | **IEC 61131-3 ST / LAD** (příčkový diagram) | **Python / C++** (pod OS Linux / Windows) |
+| **Klíčový technický argument pro volbu** | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | **Ultra nízká spotřeba pro bateriový provoz, integrovaná bezdrátová konektivita (Wi-Fi/ZigBee), nízká kusová cena při sériové výrobě 10 000 ks/rok.** | **Spolehlivý průmyslový real-time chod 24/7, modulární rozšíření pro 28 snímačů a 14 ventilů, diagnostické LED pro rychlý servis elektrikářem.** | **Extrémní výpočetní výkon pro zpracování 4K obrazu z GigE kamer a běh neuronové sítě v reálném čase, propojení se SQL databází / MES.** |
+| **Hlavní riziko při volbě špatné platformy (proč by neuspěly ostatní dvě varianty)** | MCU: Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>iPC: Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba. | **PLC:** Neumí běžet na baterie, příliš velké rozměry, chybí bezdrátové IoT standardy a podpora e-ink.<br>**iPC:** Extrémní spotřeba (vyžaduje síť), vysoká cena, těžkopádný OS. | **MCU:** Chybí průmyslové krytí, galvanické oddělení 24 V I/O, svorkovnice pro elektrikáře a certifikace.<br>**iPC:** Riziko pádů OS, nevhodné do prašného prostředí haly, chybí přímé nativní I/O svorky. | **MCU:** Zcela nedostatečný výkon pro 4K video a AI, chybí OS a podpora pro GigE kamery.<br>**PLC:** Nedokáže paralelně zpracovávat obraz z kamer ani trénovat/spouštět komplexní neuronové sítě. |
+
+---
+
+## 🌟 Bonusová odpověď: Co je to SoftPLC?
+
+**SoftPLC (Software PLC)** je softwarové řešení, které mění běžný počítač (nebo průmyslové PC – iPC) v plnohodnotný a deterministický řídicí systém. 
+
+* **Jak kombinuje výhody:** Běží na bázi operačního systému reálného času (RTOS) nebo speciálního hypervizoru/kernelu pod Windows/Linuxem. Díky tomu zajišťuje **přísně deterministický chod** (hard real-time smyčku pro bezpečné a přesné řízení strojů, splňující normu IEC 61131-3 jako běžné hardwarové PLC). 
+* **Přidaná hodnota na stejném HW:** Na stejném fyzickém zařízení přitom současně běží běžný operační systém, který umožňuje snadnou integraci s podnikovými systémy (SQL databáze, MES, ERP), vizualizaci (SCADA/HMI), pokročilou analytiku, sběr dat z IoT a moderní AI algoritmy nebo kamerové systémy. Odpadá tak nutnost mít v rozváděči zvlášť PLC pro řízení a zvlášť průmyslové PC pro vizualizaci a databáze.
+
+
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **Norma ČSN EN 61131-3:** Mezinárodní standard pro programovací jazyky PLC automatů. Definuje dva textové jazyky (ST – strukturovaný text, IL – seznam instrukcí) a tři grafické jazyky (LD – příčkový diagram / kontaktní schéma, FBD – funkční blokové schéma, SFC – sekvenční funkční schéma).
@@ -148,17 +154,9 @@ Vyplňte rozhodovací matici. Jako vzor poslouží vyplněný sloupec pro **Vzor
 <p>U aplikace A rozhoduje kusová cena a odběr proudu z baterie (PLC ani iPC z baterie nerozběhnete). U aplikace B potřebujete vyměnitelný modul na DIN lištu s diagnostickými LED, který přeprogramuje běžný údržbář v jazyce LAD. U aplikace C potřebujete obrovský výpočetní výkon pro AI a ovladače pro průmyslové kamery, což MCU ani běžné PLC nezvládne.</p>
 </details>
 
-:star2: **Bonusová otázka k úloze 3:**
-Co je to tzv. **SoftPLC** a jak umožňuje průmyslovému PC (iPC) kombinovat výhody operačního systému Windows/Linux a deterministického řízení reálného času v jediném fyzickém počítači?
 
-*Vaše odpověď:*
-`...`
-
----
 
 ### 4. Návrh a konfigurace řídicí jednotky pro čerpací stanici
-
-*Časová dotace: 25–30 minut | :bangbang: Klasifikovaná inženýrská úloha na známky*
 
 Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení pro obecní přečerpávací stanici odpadních vod.
 
@@ -180,13 +178,18 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
 
 1. **Sestavte tabulku I/O bilance** a spočtěte celkový počet signálů. Připočtěte rezervu min. 20 % pro budoucí rozšíření:
 
-| Typ signálu | Požadavek aplikace (kusy) | Popis signálů v aplikaci | Počet po započtení rezervy (+20 %) |
-| :--- | :--- | :--- | :--- |
-| **Digitální vstup (DI)** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – reléový** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – tranzistorový** | `...` | `...` | `...` |
-| **Analogový vstup (AI)** | `...` | `...` | `...` |
-| **Analogový výstup (AO)** | `...` | `...` | `...` |
+## I/O bilance
+
+| Typ signálu | Požadavek aplikace (kusy) | Popis signálu v aplikaci | Počet po započtení rezervy (+20 %) |
+|---|---:|---|---:|
+| Digitální vstup (DI) | 4 | 3× plovákový hladinový spínač + 1× poruchový kontakt termistorového relé | 5 |
+| Digitální výstup (DO) – reléový | 2 | 2× spínání cívek stykačů hlavního a záložního čerpadla | 3 |
+| Digitální výstup (DO) – tranzistorový | 1 | 1× opticko-akustický výstražný maják 24 V DC | 2 |
+| Analogový vstup (AI) | 1 | 1× hydrostatická ponorná sonda výšky hladiny, signál 4–20 mA | 2 |
+| Analogový výstup (AO) | 1 | 1× řízení otáček frekvenčního měniče hlavního čerpadla, signál 0–10 V | 2 |
+
+**Celkem bez rezervy:** 9 signálů  
+**Celkem po započtení minimálně 20% rezervy:** 14 signálů
 
 2. **Výběr konkrétního hardwaru z katalogu výrobce:**
    - Navrhněte konkrétní přístroj z praxe (např. *Siemens LOGO! 24RCE + rozšiřující moduly*, *Siemens S7-1200 CPU 1212C/1214C DC/DC/RLY*, *Schneider Modicon M221*, *Eaton easyE4-UC-12RC1*, *WAGO 750*, případně průmyslový IoT kontrolér typu *UniPi Neuron*).
