@@ -27,22 +27,8 @@ Doplňte do níže uvedené tabulky význam zkratek, základní princip a typick
 > Systém na čipu. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2007, poslední editace 7. 6. 2024 [cit. 2026-09-14]. Dostupné z: [https://cs.wikipedia.org/wiki/Syst%C3%A9m_na_%C4%8Dipu](https://cs.wikipedia.org/wiki/Syst%C3%A9m_na_%C4%8Dipu)
 >Digitální signálový procesor. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2006, poslední editace 28. 2. 2026 [cit. 2026-09-14]. Dostupné z: [https://cs.wikipedia.org/wiki/Digit%C3%A1ln%C3%AD_sign%C3%A1lov%C3%BD_procesor](https://cs.wikipedia.org/wiki/Digit%C3%A1ln%C3%AD_sign%C3%A1lov%C3%BD_procesor)
 
-<details>
-<summary> :bulb: Tip k doplnění tabulky: </summary>
-<p>Uvědomte si zásadní rozdíl: U MCU je program nahrán přímo ve vnitřní paměti Flash procesoru a startuje okamžitě po zapnutí (desítky milisekund). U MPU a iPC systém nejprve zavádí operační systém z disku/SD karty do paměti RAM (sekundy až desítky sekund).</p>
-</details>
-
-:star2: **Bonusová otázka k úloze 1:**
-
-Proč se u bezpečnostních aplikací v letectví nebo jaderné energetice stále upřednostňují jednoduché mikrořadiče nebo FPGA před moderními vícejádrovými procesory s gigabajty RAM?
-
-Důvode je determinismus, předvídatelnost a certifikovatelnost. Vícejádrové procesory s velkou RAM a složitými mezipaměťmi využívají predikci skoků, sdílené sběrnice a dynamické plánování úloh. To způsobuje že doba vykonání instrukcí není zcela konstantní, což je pro bezpečnostní kritické systémy nepřípustné. Jednoduché MCU nebo FPGA umožňují exaktně dokázat a verifikovat každý takt procesoru a stav hardwaru.
-
-
 
 ### 2. Parametry, paměti a provozní odolnost (IP krytí)
-
-*Časová dotace: max. 15 minut | Mírně náročnější úloha propojující parametry a praxi*
 
 1. **Typy pamětí v řídicích jednotkách:**
    - Doplňte porovnání pamětí z hlediska stálosti dat a rychlosti:
@@ -93,22 +79,8 @@ Důvode je determinismus, předvídatelnost a certifikovatelnost. Vícejádrové
 > 	ČESKÝ NORMALIZAČNÍ INSTITUT. *ČSN EN 60529 (33 0330) Stupně ochrany krytem (krytí - IP kód)*. Praha: Český normalizační institut, 1993. Třídící znak 330330.
 > - **Remanentní paměť (Retain):** Paměťový prostor v PLC, jehož obsah zůstává zachován i po přerušení napájecího napětí (využívá zálohovací baterii, superkondenzátor nebo zápis do FRAM/MRAM/EEPROM).
 
-<details>
-<summary> :bulb: Tip k otázce determinismu: </summary>
-<p>Běžný Linux je <b>preemptivní víceúlohový systém</b>, který se snaží spravedlivě rozdělit čas procesoru mezi stovky procesů. Může se stát, že kvůli obsluze disku, správě paměti nebo síťovému provozu se proces řízení pozdrží na desítky milisekund. PLC naproti tomu vykonává cyklus v pevném taktu bez zpoždění vyvolaného aplikacemi na pozadí.</p>
-</details>
-
-:star2: **Bonusová otázka k úloze 2:**
-Co označuje doplňkové písmeno **K** v kódu krytí **IP69K** a v jakém průmyslovém odvětví je toto krytí bezpodmínečně vyžadováno?
-
-*Vaše odpověď:* **Označuje specifickou ochranu proti vysokotlakému čištění horkou vodou nebo olejem (čištění paroměrnou tryskou pod vysokým tlakem).**
-
-**Toto krytí je bezpodmínečně vyžadováno v potravinářském průmyslu, farmacii a při výrobě nápojů**
----
 
 ### 3. Rozhodovací matice platforem (MCU vs. PLC vs. iPC) 
-
-*Časová dotace: 20–25 minut | :bangbang: Klasifikovaná inženýrská úloha na známky*
 
 Jste v pozici nezávislého konzultanta automatizace. Tři různí zákazníci požadují navrhnout optimální kategorii řízení.
 
@@ -133,34 +105,17 @@ Vyplňte rozhodovací matici. Jako vzor poslouží vyplněný sloupec pro **Vzor
 | **Klíčový technický argument pro volbu** | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | **Ultra nízká spotřeba pro bateriový provoz, integrovaná bezdrátová konektivita (Wi-Fi/ZigBee), nízká kusová cena při sériové výrobě 10 000 ks/rok.** | **Spolehlivý průmyslový real-time chod 24/7, modulární rozšíření pro 28 snímačů a 14 ventilů, diagnostické LED pro rychlý servis elektrikářem.** | **Extrémní výpočetní výkon pro zpracování 4K obrazu z GigE kamer a běh neuronové sítě v reálném čase, propojení se SQL databází / MES.** |
 | **Hlavní riziko při volbě špatné platformy (proč by neuspěly ostatní dvě varianty)** | MCU: Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>iPC: Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba. | **PLC:** Neumí běžet na baterie, příliš velké rozměry, chybí bezdrátové IoT standardy a podpora e-ink.<br>**iPC:** Extrémní spotřeba (vyžaduje síť), vysoká cena, těžkopádný OS. | **MCU:** Chybí průmyslové krytí, galvanické oddělení 24 V I/O, svorkovnice pro elektrikáře a certifikace.<br>**iPC:** Riziko pádů OS, nevhodné do prašného prostředí haly, chybí přímé nativní I/O svorky. | **MCU:** Zcela nedostatečný výkon pro 4K video a AI, chybí OS a podpora pro GigE kamery.<br>**PLC:** Nedokáže paralelně zpracovávat obraz z kamer ani trénovat/spouštět komplexní neuronové sítě. |
 
----
-
-## 🌟 Bonusová odpověď: Co je to SoftPLC?
-
-**SoftPLC (Software PLC)** je softwarové řešení, které mění běžný počítač (nebo průmyslové PC – iPC) v plnohodnotný a deterministický řídicí systém. 
-
-* **Jak kombinuje výhody:** Běží na bázi operačního systému reálného času (RTOS) nebo speciálního hypervizoru/kernelu pod Windows/Linuxem. Díky tomu zajišťuje **přísně deterministický chod** (hard real-time smyčku pro bezpečné a přesné řízení strojů, splňující normu IEC 61131-3 jako běžné hardwarové PLC). 
-* **Přidaná hodnota na stejném HW:** Na stejném fyzickém zařízení přitom současně běží běžný operační systém, který umožňuje snadnou integraci s podnikovými systémy (SQL databáze, MES, ERP), vizualizaci (SCADA/HMI), pokročilou analytiku, sběr dat z IoT a moderní AI algoritmy nebo kamerové systémy. Odpadá tak nutnost mít v rozváděči zvlášť PLC pro řízení a zvlášť průmyslové PC pro vizualizaci a databáze.
-
-
-
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **Norma ČSN EN 61131-3:** Mezinárodní standard pro programovací jazyky PLC automatů. Definuje dva textové jazyky (ST – strukturovaný text, IL – seznam instrukcí) a tři grafické jazyky (LD – příčkový diagram / kontaktní schéma, FBD – funkční blokové schéma, SFC – sekvenční funkční schéma).
 > 	ČESKÝ NORMALIZAČNÍ INSTITUT. *ČSN EN 61131-3 ed. 3 (18 0080) Programovatelné řídicí jednotky - Část 3: Programovací jazyky*. Praha: Úřad pro technickou normalizaci, metrologii a státní zkušebnictví, 2014. Třídící znak 180080.
 > - **GigE Vision:** Komunikační standard rozhraní pro průmyslové kamery využívající gigabitový Ethernet, umožňující přenos nekomprimovaného videa vysokou rychlostí na velké vzdálenosti.
 
-<details>
-<summary> :bulb: Tip pro Aplikaci A vs. B vs. C: </summary>
-<p>U aplikace A rozhoduje kusová cena a odběr proudu z baterie (PLC ani iPC z baterie nerozběhnete). U aplikace B potřebujete vyměnitelný modul na DIN lištu s diagnostickými LED, který přeprogramuje běžný údržbář v jazyce LAD. U aplikace C potřebujete obrovský výpočetní výkon pro AI a ovladače pro průmyslové kamery, což MCU ani běžné PLC nezvládne.</p>
-</details>
 
-
-
-### 4. Návrh a konfigurace řídicí jednotky pro čerpací stanici
+# 4. Návrh a konfigurace řídicí jednotky pro čerpací stanici
 
 Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení pro obecní přečerpávací stanici odpadních vod.
 
-#### Zadání technologického procesu a periferií:
+## Zadání technologického procesu a periferií:
 - **Snímače a vstupy:**
   - 3× plovákový hladinový spínač (havarijní spodní hladina proti chodu nasucho, zapínací hladina, havarijní přepad) – bezpotenciálový kontakt spínající 24 V DC.
   - 1× hydrostatická ponorná sonda výšky hladiny v jímce – výstupní signál 4–20 mA.
@@ -174,47 +129,58 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
 - **Provozní podmínky:**
   - Venkovní nekrytý terén, rozváděč vystavený dešti, prachu a teplotám v rozmezí **-20 °C až +45 °C**.
 
-#### Váš úkol:
+---
 
-1. **Sestavte tabulku I/O bilance** a spočtěte celkový počet signálů. Připočtěte rezervu min. 20 % pro budoucí rozšíření:
-
-## I/O bilance
+## 1. I/O bilance
 
 | Typ signálu | Požadavek aplikace (kusy) | Popis signálu v aplikaci | Počet po započtení rezervy (+20 %) |
-|---|---:|---|---:|
-| Digitální vstup (DI) | 4 | 3× plovákový hladinový spínač + 1× poruchový kontakt termistorového relé | 5 |
-| Digitální výstup (DO) – reléový | 2 | 2× spínání cívek stykačů hlavního a záložního čerpadla | 3 |
-| Digitální výstup (DO) – tranzistorový | 1 | 1× opticko-akustický výstražný maják 24 V DC | 2 |
-| Analogový vstup (AI) | 1 | 1× hydrostatická ponorná sonda výšky hladiny, signál 4–20 mA | 2 |
-| Analogový výstup (AO) | 1 | 1× řízení otáček frekvenčního měniče hlavního čerpadla, signál 0–10 V | 2 |
+| :--- | :---: | :--- | :---: |
+| **Digitální vstup (DI)** | 4 | 3× plovákový hladinový spínač + 1× poruchový kontakt termistorového relé | 5 |
+| **Digitální výstup (DO) – reléový** | 2 | 2× spínání cívek stykačů hlavního a záložního čerpadla | 3 |
+| **Digitální výstup (DO) – tranzistorový** | 1 | 1× opticko-akustický výstražný maják 24 V DC | 2 |
+| **Analogový vstup (AI)** | 1 | 1× hydrostatická ponorná sonda výšky hladiny, signál 4–20 mA | 2 |
+| **Analogový výstup (AO)** | 1 | 1× řízení otáček frekvenčního měniče hlavního čerpadla, signál 0–10 V | 2 |
 
-**Celkem bez rezervy:** 9 signálů  
-**Celkem po započtení minimálně 20% rezervy:** 14 signálů
+* **Celkem bez rezervy:** 9 signálů
+* **Celkem po započtení minimálně 20% rezervy:** 14 signálů
 
-2. **Výběr konkrétního hardwaru z katalogu výrobce:**
-   - Navrhněte konkrétní přístroj z praxe (např. *Siemens LOGO! 24RCE + rozšiřující moduly*, *Siemens S7-1200 CPU 1212C/1214C DC/DC/RLY*, *Schneider Modicon M221*, *Eaton easyE4-UC-12RC1*, *WAGO 750*, případně průmyslový IoT kontrolér typu *UniPi Neuron*).
-   - Uveďte:
-     - Výrobce a přesný model CPU: `...`
-     - Objednací kód (Part Number / Order Code): `...`
-     - Rozšiřující moduly (pokud jsou nutné pro AI 4–20 mA nebo AO 0–10 V): `...`
-     - Napájecí napětí zvolené jednotky: `...`
-     - Jak je vyřešeno odesílání dat na dispečink: `...`
-     - Odkaz na technický list (datasheet): `...`
-     - Odkazy na další použité zdroje: `...`
+---
 
-3. **Technické ověření z datasheetu:**
-   - Zvládá zvolená jednotka garantovaný provoz při -20 °C? Doložte údaj z datasheetu: `...`
-   - Jakým způsobem spínáte cívku stykače 230 V AC (reléový výstup jednotky přímo, nebo přes pomocné mezilehlé relé)? Zdůvodněte: `...`
+## 2. Výběr hardwaru z katalogu výrobce
 
-4. **Krytí rozváděče:**
-   - Jaké minimální krytí **IP skříně** zvolíte? Jak v rozváděči zajistíte provoz v mrazech -20 °C a v letních vedrech?
-     - Zvolené krytí rozváděče: `...`
-     - Teplotní management skříně: `...`
+### Přehled zvoleného hardwaru
 
-> **Kritéria hodnocení úlohy 4 (bodování a známka):**
-> - :bangbang: **Správnost I/O bilance a dimenzování (30 %):** Správný součet všech signálů, korektní rozlišení reléových vs. tranzistorových výstupů a správné započtení rezervy min. 20 %.
-> - :bangbang: **Reálnost výběru a kompatibilita HW (40 %):** Zvolený přístroj skutečně existuje na trhu, konfigurace plně pokrývá všechny vstupy/výstupy (včetně analogů 4–20 mA a 0–10 V) a komunikaci.
-> - :bangbang: **Posouzení provozních podmínek a instalace (30 %):** Správná volba krytí rozváděče (min. IP65), vyřešení vytápění/ventilace pro mráz a spolehlivé galvanické oddělení výkonových akčních členů.
+| Zařízení | Objednací číslo (Order Code) | Funkce |
+| :--- | :--- | :--- |
+| **Siemens SIMATIC S7-1200 CPU 1214C DC/DC/RLY** | `6ES7214-1HG40-0XB0` | Hlavní CPU, integrované DI, reléové DO, AI, Ethernet |
+| **SM 1222, 8× DO 24 V DC** | `6ES7222-1BF32-0XB0` | Rozšiřující tranzistorové digitální výstupy pro maják |
+| **SM 1231, 4× AI** | `6ES7231-5ND32-0XB0` | Rozšiřující analogové vstupy (proudová smyčka 4–20 mA) |
+| **SM 1232, 2× AO** | `6ES7232-4HB32-0XB0` | Rozšiřující analogové výstupy (0–10 V pro frekvenční měnič) |
+| **Napájecí zdroj** | *Průmyslový standard 24 V DC* | Napájení PLC, čidel a akčních členů |
+
+### Závěr výběru
+Navržená sestava plně pokrývá požadované digitální i analogové signály včetně minimálně 20% rezervy. CPU 1214C zajišťuje základní logiku a Ethernet komunikaci, rozšiřující moduly doplňují potřebné proudové vstupy, analogové výstupy a tranzistorové spínání.
+
+---
+
+## 4. Technické ověření z datasheetu
+
+* **Zvládá zvolená jednotka garantovaný provoz při -20 °C?**
+  * **Ano, zvládá.** Dle oficiálního technického listu (datasheetu) řady Siemens SIMATIC S7-1200 je přípustná teplota okolního prostředí při horizontální montáži v rozmezí **-20 °C až +60 °C** (resp. do +50 °C při vertikální). Dolní hranice -20 °C tedy vyhovuje zadaným podmínkám.
+* **Jakým způsobem spínáte cívku stykače 230 V AC?**
+  * **Přes pomocná mezilehlá relé (interface relays).** Přestože reléové výstupy PLC fyzicky umí spínat 230 V AC, u induktivních zátěží (cívky stykačů) dochází při rozpínání k elektrickému oblouku a opalování kontaktů. Použitím externích mezilehlých relé chráníme interní výstupy PLC před zničením, zajistíme galvanické oddělení a prodloužíme životnost celé sestavy.
+
+---
+
+## 5. Krytí rozváděče a teplotní management
+
+* **Zvolené krytí rozváděče:**
+  * Minimálně **IP65** (prachotěsné a chráněné proti tryskající vodě ze všech směrů). Vzhledem k umístění ve venkovním nekrytém terénu a vystavení dešti je krytí IP65 nutným minimem. Doporučuje se oceloplechový nebo nerezový rozváděč s okapničkou.
+* **Teplotní management skříně:**
+  * Pro zvládnutí extrémního teplotního rozmezí **-20 °C až +45 °C** (a vlivu slunečního svitu) je nutné osadit aktivní prvky:
+    1. **Ochrana proti mrazu (-20 °C):** Skříňové topné těleso (vyhřívání) s termostatem, které při poklesu vnitřní teploty pod +5 °C začne topit a zabrání tvorbě kondenzace (rosného bodu) na deskách elektroniky.
+    2. **Ochrana proti letním vedrům (+45 °C venku):** Chladicí ventilátor s filtrem (případně průmyslová klimatizace do rozváděčů), který zajistí nucenou výměnu vzduchu a udrží vnitřní teplotu v bezpečné provozní zóně pod +60 °C.
+
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **Proudová smyčka 4–20 mA:** Průmyslový standard pro přenos analogových signálů ze senzorů. Výhodou oproti napěťovému signálu 0–10 V je vysoká odolnost proti elektromagnetickému rušení, nezávislost na odporu dlouhého vedení a detekce přetržení vodiče (pokud je proud roven 0 mA, jde o poruchu vedení – tzv. živá nula / live zero).
@@ -222,22 +188,7 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
 > - **Galvanické oddělení:** Elektrické oddělení dvou elektrických obvodů (např. pomocí optočlenů nebo relé), které zabraňuje přenosu rušení, rozdílům zemních potenciálů a chrání citlivé vstupy řídicí jednotky před zničením přepětím.
 > - **Bezpotenciálový kontakt** (označovaný také jako **dry contact**) je elektrický kontakt, který sám o sobě nemá žádné vlastní napětí ani neposkytuje žádný proud. Funguje čistě jako mechanický nebo elektronický spínač (jako klasický vypínač na zdi), který pouze spojí nebo rozpojí dva vodiče v externím obvodu.
 
-<details>
-<summary> :bulb: Tip pro výběr modulů: </summary>
-<p>Pozor na analogové vstupy: Základní kompaktní jednotky (např. LOGO! nebo S7-1200) mívají integrované analogové vstupy pouze pro napětí 0–10 V. Vstupní signál 4–20 mA ze sondy vyžaduje buď speciální rozšiřující modul pro proudové signály, nebo zařazení přesného paralelního odporu 500 Ω (převod 4–20 mA na 2–10 V).</p>
-</details>
-
-:star2: **Bonusová otázka k úloze 4:**
-Proč se u čerpadel v čistírnách odpadních vod a jímkách striktně upřednostňuje měření hladiny pomocí proudového signálu 4–20 mA před napěťovým signálem 0–10 V a proč se do jímky nepoužívá ultrazvukový senzor, pokud v ní vzniká hustá pěna?
-
-*Vaše odpověď:*
-`...`
-
----
-
-### 5. Technický audit a oponentura nevhodného návrhu
-
-*Časová dotace: 20–25 minut | :bangbang: Klasifikovaná inženýrská úloha na známky*
+# 5. Technický audit a oponentura nevhodného návrhu
 
 Jako vedoucí inženýr jste převzal projekt po nezkušeném brigádníkovi, který navrhl řízení automatizovaného tvářecího a lisovacího stroje v prašné kovářské dílně následovně:
 - **Řídicí deska:** Běžná vývojová deska **Arduino Uno (Rev3)** s mikrokontrolérem ATmega328P.
@@ -246,46 +197,28 @@ Jako vedoucí inženýr jste převzal projekt po nezkušeném brigádníkovi, kt
 - **Spínání zátěže:** 4kanálový hobby reléový modul z čínského e-shopu propojený s Arduinem tenkými nepájenými vodiči (DuPont propojky). Modul přímo spíná 400V ventily hydrauliky.
 - **Bezpečnost (Safety):** Nouzové stop tlačítko (E-Stop) je zapojeno přímo do digitálního pinu D2 Arduina jako softwarové přerušení (interrupt), které v kódu nastaví výstupy na `LOW`.
 
-#### Váš úkol:
+---
 
-1. **Zpracujte písemný audit rizik (minimálně 4 fatální technická selhání):**
-   Vyplňte protokol o zjištěných vadách a popište konkrétní fyzikální mechanismus, jak daná chyba způsobí havárii stroje či ohrožení lidského života:
+## 1. Písemný audit rizik
 
 | Oblast auditu | Zjištěná vada v amatérském návrhu | Fyzikální mechanismus selhání (proč to selže) | Následek pro stroj nebo obsluhu |
 | :--- | :--- | :--- | :--- |
-| **Elektromagnetická kompatibilita (EMC)** | `...` | Napěťové špičky z indukční zátěže hydraulických ventilů způsobí restart MCU... | `...` |
-| **Mechanická a teplotní odolnost** | PLA plast a montáž na těleso lisu | `...` | `...` |
-| **Konektivita a propojení vodičů** | DuPont propojovací kabely bez aretace | `...` | `...` |
-| **Funkční bezpečnost (Safety)** | Nouzový stop řešený softwarově v čipu | `...` | `...` |
-
-2. **Návrh profesionálního nápravného řešení:**
-   - Navrhněte, jakými certifikovanými průmyslovými komponenty tento celek nahradíte při zachování minimálního rozpočtu:
-     - *Náhrada řídicí jednotky:* `...` *(např. certifikované průmyslové programovatelné relé s montáží na DIN lištu a krytím)*
-     - *Náhrada napájecího zdroje:* `...` *(např. stabilizovaný průmyslový zdroj 24 V DC na DIN lištu s ochranou proti přepětí)*
-     - *Způsob zapojení bezpečnostního okruhu (Safety):* Jak musí být podle norem zapojeno tlačítko Emergency Stop (E-Stop)? Smí být spoléháno pouze na software mikrokontroléru? Zdůvodněte: `...`
-
-> **Kritéria hodnocení úlohy 5 (bodování a známka):**
-> - :bangbang: **Odborná úroveň identifikace závad (35 %):** Přesná technická terminologie (např. elektromagnetická indukce, absence odrušovacích varistorů, skelný přechod PLA plastu při 60 °C, studené spoje a vyklepání konektorů vibracemi).
-> - :bangbang: **Pochopení norem funkční bezpečnosti Safety (35 %):** Znalost základního principu bezpečnosti strojních zařízení – nouzové zastavení musí být řešeno hardwarově přes certifikované bezpečnostní relé s nuceně vedenými kontakty, nikoliv pouhým softwarovým vstupem MCU.
-> - :bangbang: **Kvalita a realizovatelnost nápravného řešení (30 %):** Návrh odpovídá robustní průmyslové praxi s montáží do oceloplechového rozváděče na DIN lištu.
-
-> :key: **Vysvětlení pojmů a odborné zdroje:**
-> - **Funkční bezpečnost (Safety) vs. Kybernetická bezpečnost (Security):** *Safety* (dle ČSN EN ISO 13849-1) zajišťuje, že strojní zařízení nezpůsobí úraz člověku ani při vnitřní poruše řídicího systému (využívá redundantní obvody, bezpečnostní relé, optické závory, kategorii spolehlivosti PL a až PL e / SIL 3). *Security* řeší ochranu dat a systému před úmyslným napadením zvenčí (hackeři, malware).
-> - **EMC (Elektromagnetická kompatibilita):** Schopnost zařízení spolehlivě pracovat v prostředí s elektromagnetickým rušením (odolnost / imunita) a současně nezpůsobovat nepřípustné rušení jiným zařízením (emise).
-> 	Elektromagnetická kompatibilita. *Wikipedie: Otevřená encyklopedie* [online]. San Francisco (CA): Wikimedia Foundation, 2023, 2023-11-20 [cit. 2026-09-17]. Dostupné z: https://cs.wikipedia.org/wiki/Elektromagnetick%C3%A1_kompatibilita
-
-<details>
-<summary> :bulb: Tip k bezpečnostnímu okruhu (Safety): </summary>
-<p>Základní pravidlo bezpečnosti: <strong>Software může selhat, zacyklit se nebo zamrznout.</strong> Bezpečnostní okruh nouzového zastavení (červený hřib) musí být vždy dvoukanálový, zapojený do hardwarového bezpečnostního relé (např. Pilz, Schneider Preventa, Siemens SIRIUS), které odpojí silové napájení stykačů ventilů přímo na hardwarové úrovni nezávisle na procesoru!</p>
-</details>
-
-:star2: **Bonusová otázka k úloze 5:**
-Proč hobby reléové moduly s optočleny určené pro Arduino v průmyslovém rozváděči často shoří nebo způsobí trvalé sepnutí zátěže (tzv. přivaření kontaktů), i když jmenovitý proud relé je 10 A a cívka stykače odebírá jen 0,5 A?
-
-*Vaše odpověď:*
-`...`
+| **Elektromagnetická kompatibilita (EMC)** | Absence odrušovacích členů, galvanického oddělení na reléovém modulu a použití nestíněné kabeláže. | Indukční špičky (*zpětné EMF* při vypnutí cívek hydraulických ventilů a motorů) generují vysokofrekvenční rušení, které proniká do napájení a I/O pinů Arduina. | Zmrazení, nekontrolovaný restart mikrokontroléru (MCU) nebo náhodné sepnutí/rozepnutí ventilů za provozu. |
+| **Mechanická a teplotní odolnost** | PLA plastová krabička vytištěná na 3D tiskárně přišroubovaná přímo na těleso vibrujícího lisu. | PLA má nízkou teplotu skelného přechodu (cca 60 °C). V kombinaci s provozním teplem lisu a neustálými mechanickými vibracemi dochází k měknutí plastu, deformaci, povolení spojů a únavovému selhání materiálu. | Rozpad krabičky, obnažení živých částí 230V/400V pod napětím a riziko smrtelného úrazu elektrikáře či obsluhy elektrickým proudem. |
+| **Konektivita a propojení vodičů** | Použití propojovacích vodičů typu DuPont bez jakékoliv mechanické aretace v prašném prostředí. | DuPont konektory spoléhají čistě na tření. V kombinaci s vibracemi lisu a prachem v kovářské dílně dochází k oxidaci kontaktů a postupnému vyklepání vodičů. | Vznik přechodových odporů, přerušení signálů, falešné stavy na vstupech a nekontrolované chování stroje. |
+| **Funkční bezpečnost (Safety)** | Nouzové stop tlačítko (E-Stop) zapojené pouze jako softwarový přerušovač do Arduina. | Software může selhat, zacyklit se, zamrznout kvůli EMC rušení nebo zhasnout při výpadku napájení dřív, než stihne provést obslužný kód. MCU negarantuje deterministickou hardwarovou reakci dle norem pro bezpečnost strojů. | Selhání nouzového zastavení v kritické situaci, kdy obsluha potřebuje okamžitě zastavit lis, což může vést k těžkému úrazu končetin. |
 
 ---
+
+## 2. Návrh profesionálního nápravného řešení
+
+* **Náhrada řídicí jednotky:** 
+  Průmyslové kompaktní PLC s montáží na DIN lištu v uzavřeném oceloplechovém rozváděči (např. *Siemens LOGO! 24RCE* nebo *Schneider Electric Modicon M221*), které disponuje robustním galvanickým oddělením, šroubovými svorkami a průmyslovou certifikací.
+* **Náhrada napájecího zdroje:** 
+  Průmyslový spínaný zdroj 24 V DC na DIN lištu s ochranou proti zkratu a přepětí (např. *Siemens SITOP*).
+* **Způsob zapojení bezpečnostního okruhu (Safety):** 
+  Tlačítko E-Stop (dvoukanálové s nuceně vedenými kontakty) musí být zapojeno do **certifikovaného bezpečnostního relé** (např. *Pilz PNOZ* nebo *Siemens SIRIUS*), které na hardwarové úrovni odpojí napájení silových akčních členů (ventilů/stykačů) nezávisle na stavu procesoru PLC. Softwarové řešení nesmí být jediným prvkem bezpečnosti.
+
 
 ### 6. Rozšiřující inženýrská výzva: TCO a životní cyklus v automatizaci
 
