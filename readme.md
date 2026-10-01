@@ -5,73 +5,42 @@
 
 $${\color{#FFA500}E9 \space \color{#4682B4}A1 }$$
 
-## Cíle
-
-- **Kategorizovat a porovnat** architektury řídicích systémů (MCU, MPU, embedded systémy, PLC, iPC, programovatelná relé) podle výkonu, paměti, determinismu a spolehlivosti.
-- **Analyzovat provozní prostředí a vnější vlivy** (krytí IP, teplotní rozsah, EMC rušení, vibrace) a stanovit požadavky na mechanickou a elektrickou odolnost hardware.
-- **Sestavit I/O bilanci** a navrhnout optimální řídicí jednotku z reálných katalogů výrobců pro konkrétní průmyslovou či IoT aplikaci včetně projektové rezervy.
-- **Vypracovat vícekriteriální rozhodovací matici** a obhájit zvolenou platformu z technického a ekonomického hlediska (pořizovací cena, náročnost vývoje, údržba a spolehlivost).
-- **Provést kritický technický audit (troubleshooting)** nevhodného návrhu řízení, identifikovat bezpečnostní a provozní rizika a navrhnout certifikované řešení v souladu s průmyslovými standardy.
-
-## Ověření cílů
-
-Výběr řídící jednotky pro různé aplikace
-
-1. Příklady řídících jednotek
-2. Jejich základní vlastnosti z hlediska výpočetního výkonu a velikosti paměťového prostoru
-3. A z hlediska odolnosti
-4. Příklady použití v praxi (kde se používají MCU, a kde ř. j. s MPU)
-
-<!--
-1. Správné vysvětlení pojmů, architektur a zkratek z oblasti řídicích systémů. 
-2. Schopnost posoudit vliv prostředí na výběr hardwaru a dešifrovat IP kód. 
-3. Vypracování rozhodovací matice pro volbu vhodné platformy (MCU vs. PLC vs. iPC). 
-4. Návrh konkrétní konfigurace řídicí jednotky na základě zadané I/O bilance a provozních podmínek. 
-5. Kritická technická oponentura (audit) nevhodně navrženého řešení. 
--->
-
-
----
-
-## Úlohy
-
 
 ### 1. Základní pojmy a architektury řídicích jednotek
 
-*Časová dotace: 10–15 minut | Úvodní orientační úloha*
+*Časová dotace: 10–15 minut | Úvodní úloha*
 
 Doplňte do níže uvedené tabulky význam zkratek, základní princip a typický příklad reálného nasazení nebo zástupce:
 
-| Zkratka / Pojem          | Co zkratka znamená (česky / anglicky) | Základní charakteristika (architektura, kde běží program)                                            | Typický zástupce (konkrétní rodina / model) | Příklad reálného nasazení                |
-| :----------------------- | :------------------------------------ | :--------------------------------------------------------------------------------------------------- | :------------------------------------------ | :--------------------------------------- |
-| **MCU**                  |                                       | Integrovaný čip (CPU + RAM + Flash na jednom substrátu), deterministický běh bez OS nebo RTOS        | např. ESP32, PIC16LF1xxx, RP2040            |                                          |
-| **MPU**                  |                                       | Samostatný procesor vyžadující externí RAM a úložiště, zpravidla běží plnohodnotný OS (Linux)        |                                             |                                          |
-| **Embedded**             |                                       |                                                                                                      | Embedded PLC, Embedded PC                   | Bílá technika, bankomaty, regulace kotlů |
-| **PLC**                  |                                       | Průmyslový automat pro cyklické deterministické řízení procesů, vysoká odolnost, modulární/kompaktní |                                             |                                          |
-| **iPC**                  |                                       |                                                                                                      |                                             |                                          |
-| **Programovatelné relé** |                                       | Zjednodušené kompaktní PLC pro méně náročné úlohy, nahrazuje časovací relé a stykačové kombinace     |                                             |                                          |
+| Zkratka / Pojem          | Co zkratka znamená (česky/anglicky) | Základní charakteristika (architektura, kde běží program)                                 | Typický zástupce                  | Příklad nasazení                           |
+| :----------------------- | :---------------------------------- | :---------------------------------------------------------------------------------------- | :-------------------------------- | ------------------------------------------ |
+| **MCU**                  |  Microcontroller Unit (Mikrořadič)   | Integrovaný čip (CPU + RAM + Flash na jednom křemíku), deterministický běh bez OS / RTOS  | např. ESP32, PIC16LF1xxx, RP2040  |Senzory, domácí spotřebiče, hračky |
+| **MPU**                  |  Microprocessor Unit (Mikroprocesor)| Samostatný procesor vyžadující externí RAM a úložiště, často běží plnohodnotný OS (Linux) |  ARM Cortex-A (např. Raspberry Pi), Intel Core |Tablety, pokročilé brány (IoT gateways), počítače |
+| **Embedded**             |  Vestavěný systém |Účelově zaměřený počítačový systém kombinující hardware (MCU/MPU) a software pro specifickou úlohu | Embedded PLC, embedded PC         | Bílá technika, bankomaty, plynové kotle... |
+| **PLC**                |  Programmable Logic Controller (Programovatelný logický automat)| Průmyslový automat pro cyklické řízení procesů, vysoká odolnost, modulární/kompaktní      | SIMATIC S7-1200/1500  |Průmyslové linky, výrobní stroje, robotika     |
+| **iPC**                  |Industrial PC (Průmyslový počítač) |Počítač v průmyslovém provedení, vysoká výkonnost, x86/ARM architektura, běží průmyslový OS |Siemens SIMATIC IPC, Beckhoff |Vizualizace (HMI/SCADA), náročný sběr dat|
+| **Programovatelné relé** |Smart relay / Programovatelné relé | Zjednodušené malé PLC pro méně náročné úlohy (nahrazuje časovače a relé)                  | např. Siemens LOGO!, Eaton easyE4 | Ovládání osvětlení, menší vzduchotechnika, brány    |
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
-> - **SoC (System on Chip):** Integrovaný obvod sdružující všechny klíčové elektronické obvody a komponenty celého počítače či elektronického systému na jediném křemíkovém čipu. 
-> 	 Systém na čipu. *Wikipedie: Otevřená encyklopedie* [online]. San Francisco (CA): Wikimedia Foundation, 2024, 2024-06-07 [cit. 2026-09-17]. Dostupné z: https://cs.wikipedia.org/wiki/Syst%C3%A9m_na_%C4%8Dipu
-> - **DSP (Digital Signal Processor):** Specializovaný mikroprocesor architektury Harvard optimalizovaný pro matematické výpočty v reálném čase (rychlá Fourierova transformace FFT, filtrace šumu, digitální vektorové řízení střídavých motorů). 
-> 	Digitální signálový procesor. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2006, poslední editace 28. 2. 2026 [cit. 2026-09-14]. Dostupné z: [Digitální signálový procesor – Wikipedie](https://cs.wikipedia.org/wiki/Digit%C3%A1ln%C3%AD_sign%C3%A1lov%C3%BD_procesor)
-> - **FPGA (Field-Programmable Gate Array):** Programovatelné logické hradlové pole, jehož vnitřní struktura logických bloků a propojení je konfigurovatelná až u zákazníka. Umožňuje masivní paralelní zpracování s hardwarovou latencí v řádu nanosekund. 
-> 	Programovatelné hradlové pole. *Wikipedie: Otevřená encyklopedie* [online]. San Francisco (CA): Wikimedia Foundation, 2024, 2024-01-10 [cit. 2026-09-17]. Dostupné z: https://cs.wikipedia.org/wiki/Programovateln%C3%A9_hradlov%C3%A9_pole
-
+> - **SoC (System on Chip):** Čip integrující CPU, GPU, paměť i bezdrátové moduly (např. Wi-Fi/BT) na jediném substrátu (např. v telefonech, ESP32).
+> - **DSP (Digital Signal Processor):** Specializovaný procesor s architekturou optimalizovanou pro bleskové matematické operace (filtrace zvuku, FFT, řízení motorů).
+> - **FPGA (Field-Programmable Gate Array):** Programovatelné hradlové pole umožňující vytvořit libovolný digitální obvod přímo na hardwarové úrovni s nulovou programovou latencí.
+> Programovatelné hradlové pole. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2005, poslední editace 10. 1. 2024 [cit. 2026-09-14]. Dostupné z: [https://cs.wikipedia.org/wiki/Programovateln%C3%A9_hradlov%C3%A9_pole](https://cs.wikipedia.org/wiki/Programovateln%C3%A9_hradlov%C3%A9_pole)
+> Systém na čipu. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2007, poslední editace 7. 6. 2024 [cit. 2026-09-14]. Dostupné z: [https://cs.wikipedia.org/wiki/Syst%C3%A9m_na_%C4%8Dipu](https://cs.wikipedia.org/wiki/Syst%C3%A9m_na_%C4%8Dipu)
+>Digitální signálový procesor. In: _Wikipedia: otevřená encyklopedie_ [online]. St. Petersburg (Florida): Wikimedia Foundation, 2006, poslední editace 28. 2. 2026 [cit. 2026-09-14]. Dostupné z: [https://cs.wikipedia.org/wiki/Digit%C3%A1ln%C3%AD_sign%C3%A1lov%C3%BD_procesor](https://cs.wikipedia.org/wiki/Digit%C3%A1ln%C3%AD_sign%C3%A1lov%C3%BD_procesor)
 
 <details>
 <summary> :bulb: Tip k doplnění tabulky: </summary>
-<p>Zaměřte se na čas náběhu a architekturu: U MCU je kód ve vnitřní paměti Flash procesoru a vykonává se okamžitě po přivedení napájení (řádově milisekundy). U systémů s MPU a iPC musí BIOS/bootloader nejprve zavést jádro operačního systému (OS Linux, Windows) z disku/eMMC/SD karty do operační paměti RAM, což trvá desítky sekund.</p>
+<p>Uvědomte si zásadní rozdíl: U MCU je program nahrán přímo ve vnitřní paměti Flash procesoru a startuje okamžitě po zapnutí (desítky milisekund). U MPU a iPC systém nejprve zavádí operační systém z disku/SD karty do paměti RAM (sekundy až desítky sekund).</p>
 </details>
 
 :star2: **Bonusová otázka k úloze 1:**
-Proč se u kritických aplikací v letectví (např. systém řízení letu Fly-by-Wire) nebo v jaderné energetice stále upřednostňují jednoduché deterministické mikrořadiče s několika desítkami kilobajtů paměti nebo obvody FPGA před moderními vícejádrovými gigahertzovými procesory s gigabajty RAM?
 
-*Vaše odpověď:*
-`...`
+Proč se u bezpečnostních aplikací v letectví nebo jaderné energetice stále upřednostňují jednoduché mikrořadiče nebo FPGA před moderními vícejádrovými procesory s gigabajty RAM?
 
----
+Důvode je determinismus, předvídatelnost a certifikovatelnost. Vícejádrové procesory s velkou RAM a složitými mezipaměťmi využívají predikci skoků, sdílené sběrnice a dynamické plánování úloh. To způsobuje že doba vykonání instrukcí není zcela konstantní, což je pro bezpečnostní kritické systémy nepřípustné. Jednoduché MCU nebo FPGA umožňují exaktně dokázat a verifikovat každý takt procesoru a stav hardwaru.
+
+
 
 ### 2. Parametry, paměti a provozní odolnost (IP krytí)
 
@@ -80,42 +49,44 @@ Proč se u kritických aplikací v letectví (např. systém řízení letu Fly-
 1. **Typy pamětí v řídicích jednotkách:**
    - Doplňte porovnání pamětí z hlediska stálosti dat a rychlosti:
      - **RAM:** 
-	     - Je volatilní (energeticky závislá)? `[Ano / Ne]`
-	     - Rychlost zápisu: `...` 
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní (energeticky závislá)? **ANO**
+	     - Rychlost zápisu: **EXTREMĚ VYSOKÁ** 
+	     - K čemu se využívá v PLC/MCU: **Ukládání proměnných, stavů a dat aktuálního běhu programu (pracovní paměť)**
      - **Flash (ROM):** 
-	     - Je volatilní? `[Ano / Ne]`
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní? **NE**
+	     - K čemu se využívá v PLC/MCU: **Ukládání samotného uživatelského programu, firmwaru a trvalých dat.**
      - **EEPROM / NVRAM:** 
-	     - Je volatilní? `[Ano / Ne]`
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní? **NE**
+	     - K čemu se využívá v PLC/MCU: **Ukládání konfiguračních parametrů, nastavení a dat, která je nutné uchovat i po vypnutí napájení (remanentní data).**
    - *Otázka z praxe:* Kam se v průmyslovém PLC ukládají aktuální provozní proměnné (např. čítače vyrobených kusů nebo motohodiny), aby se při nečekaném výpadku napájení neztratily (tzv. remanentní / retain data)?
-     - Odpověď: `...`
+     - Odpověď: **Do remanentní paměti (např. EEPROM, FRAM, nebo do RAM zálohované superkondenzátorem či baterií).**
 
 2. **Reálný čas a determinismus (Hard vs. Soft Real-Time):**
    - Proč pro reakci na nouzové zastavení lisu (požadavek reakce do 5 ms) použijeme PLC či mikrokontrolér s RTOS, a nikoliv běžné Raspberry Pi s operačním systémem Raspberry Pi OS (standardní Linux)?
-     - Odpověď: `...`
+     - Odpověď: **Běžný operační systém (jako je Raspberry Pi OS) je preemptivní multi-taskingový systém, který rozděluje výkon mezi mnoho procesů na pozadí (správa paměti, síťový provoz). To může způsobit neočekávanou prodlevu (latenci) v řádu desítek milisekund. Pro bezpečnostní funkce, jako je nouzové zastavení lisu (požadavek do 5 ms), je nutný deterministický systém (Hard Real-Time), který zaručuje přesný časový limit odezvy bez výkyvů.**
 
 3. **Odolnost vůči vlivům prostředí a dešifrování kódu IP:**
    - Dešifrujte kód **IP68**:
-     - První číslice (6): `...`
-     - Druhá číslice (8): `...`
+     - První číslice (6): **Úplná ochrana před vniknutím prachu (prachotěsné).**
+     - Druhá číslice (8): **Ochrana proti nepřetržitému ponoření do vody za podmínek určených výrobcem.**
    - Jaké minimální krytí IP musí mít rozváděč umístěný ve venkovním nekrytém prostředí, kde na něj přímo dopadá déšť a fouká polétavý prach?
-     - Označte správnou volbu: `[ ] IP20` | `[ ] IP44` | `[ ] IP65` | `[ ] IP00`
-     - Zdůvodnění: `...`
+     - Označte správnou volbu: `[ ] IP20` | `[ ] IP44` | **[X] IP65** | `[ ] IP00`
+     - Zdůvodnění: **Zdůvodnění: Stupeň IP65 zaručuje úplnou ochranu proti prachu (6) a ochranu proti tryskající vodě ze všech směrů (5), což spolehlivě odolá dešti a polétavému prachu ve venkovním prostředí.**
 
 4. **Konstrukční rozdíly kancelářského PC vs. průmyslového iPC:**
    - Vyberte a doplňte hlavní odlišnosti:
      - *Chlazení:* 
-	     - Kancelářské PC: `...` 
-	     - vs. iPC: `...`
+	     - Kancelářské PC: **Aktivní chlazení pomocí ventilátorů** 
+	     - vs. iPC: **Pasivní chlazení s masivním žebrováním, hermeticky uzavřené proti prachu.**
      - *Napájecí napětí a filtrace:* 
-	     - Kancelářské PC: `...` 
-	     - vs. iPC: `...`
-     - *Odolnost proti otřesům a vibracím:* `...`
+	     - Kancelářské PC: **Standardní síťové napětí 230 V AC přes běžný zdroj** 
+	     - vs. iPC: **Průmyslový standard 24 V DC s robustní filtrací proti elektromagnetickému rušení (EMI) a výkyvům napětí.**
+     - *Odolnost proti otřesům a vibracím:*
+     - Kancelářské PC: **Nízká, kvůli HDD**
+     - vs. iPC : **Vysoká mechanická odolnost, kvůli SSD**
      - *Způsob montáže:* 
-	     - Kancelářské PC: na stůl/pod stůl 
-	     - vs. iPC: `...`
+	     - Kancelářské PC: **na stůl/pod stůl** 
+	     - vs. iPC: **Na DIN lištu, do panelu**
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **Determinismus (Real-Time):** Vlastnost systému, která zaručuje, že odezva na vstupní událost proběhne vždy v přesně definovaném a předvídatelném čase (deadline). V *Hard Real-Time* systémech znamená nedodržení časového limitu fatální havárii celého procesu. 
@@ -132,9 +103,9 @@ Proč se u kritických aplikací v letectví (např. systém řízení letu Fly-
 :star2: **Bonusová otázka k úloze 2:**
 Co označuje doplňkové písmeno **K** v kódu krytí **IP69K** a v jakém průmyslovém odvětví je toto krytí bezpodmínečně vyžadováno?
 
-*Vaše odpověď:*
-`...`
+*Vaše odpověď:* **Označuje specifickou ochranu proti vysokotlakému čištění horkou vodou nebo olejem (čištění paroměrnou tryskou pod vysokým tlakem).**
 
+**Toto krytí je bezpodmínečně vyžadováno v potravinářském průmyslu, farmacii a při výrobě nápojů**
 ---
 
 ### 3. Rozhodovací matice platforem (MCU vs. PLC vs. iPC) 
